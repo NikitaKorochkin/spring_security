@@ -5,7 +5,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
 
 import javax.sql.DataSource;
 
@@ -20,18 +19,6 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
         auth.jdbcAuthentication().dataSource(dataSource);
 
-//        User.UserBuilder userBuilder = User.withDefaultPasswordEncoder();
-
-//        auth.inMemoryAuthentication()
-//                .withUser(userBuilder.username("nikita")
-//                        .password("NikiNeee13")
-//                        .roles("EMPLOYEE"))
-//                .withUser(userBuilder.username("elena")
-//                        .password("elena")
-//                        .roles("HR"))
-//                .withUser(userBuilder.username("ivan")
-//                        .password("ivan")
-//                        .roles("MANAGER", "HR"));
     }
 
     @Override
