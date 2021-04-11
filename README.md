@@ -15,7 +15,7 @@ Spring(MVC, Security), MySQL, Tomcat 9(9.0.44), Maven
 
 1. Клонировать репозиторий с проектом к себе на компьютер:
     
-    ![ScreenShot](1.png "Копируем URL")
+    ![ScreenShot](screenshots/url.png "Копируем URL")
     В командной строке проходим до нужной директории, куда и будет клонирован репозиторий 
     `$ cd YOUR_DIRECTORY`, далее прописываем команду `$ git clone URL`. Репозиторий клонирован.
 
@@ -23,7 +23,7 @@ Spring(MVC, Security), MySQL, Tomcat 9(9.0.44), Maven
 3. Создать конфигурационный класс в пакете configuration
    
    Создаем класс MyConfig.java в пакете configuration
-   ![ScreenShot](2.png)
+   ![ScreenShot](screenshots/config.png)
 
 В параметре аннотации @ComponentScan указываем, где Spring должен искать компоненты приложения.
 
@@ -60,20 +60,19 @@ Spring(MVC, Security), MySQL, Tomcat 9(9.0.44), Maven
 ```    
 TimeZone прописывать обязательно!
 
-1. Подготовить таблицы в БД
+4. Подготовить таблицы в БД
 
-2. Настроить Appache Tomcat.
+
+5. Настроить Appache Tomcat.
 
 Я использовал Tomcat 9.0.44
 
-В Intellij Idea нажимаем на Edit Configuration рядом с кнопкой запуска, выбираем Tomcat Server Local, в появившемся окне нажимаем Configure и находим скачанный архив (скачиваем при необходимости)
-![ScreenShot](4.png)
-![ScreenShot](5.png)
+В Intellij Idea нажимаем на Edit Configuration рядом с кнопкой запуска, выбираем Tomcat Server -> Local, в появившемся окне нажимаем Configure и находим архив tomcat (скачиваем при необходимости)
+![ScreenShot](screenshots/tomcat2.png)
 
 Переходим в Deployment, добавляем артефакт war_exploded
 
-![ScreenShot](6.png)
-![ScreenShot](7.png)
+![ScreenShot](screenshots/tomcat3.png)
 
 Нажимаем Apply, OK. Сервер готов.
 
