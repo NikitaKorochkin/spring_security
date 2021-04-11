@@ -1,2 +1,3 @@
 # Project exclude paths
 /target/
+/src/main/java/ru/korochkin/spring/security/configuration/MyConfig.java
