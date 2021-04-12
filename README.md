@@ -1,7 +1,7 @@
 # spring_security
 
 ## Описание
-В данном репозитории представлено простое Spring Security приложение, в котором реализованы следующие возможности:
+Простое Spring Security приложение, в котором реализованы следующие возможности:
 - процедура аутентификации
 - процедура авторизации
 - хранение пароля в БД в зашифрованном и не шифрованном видах
@@ -27,9 +27,9 @@ Spring(MVC, Security), MySQL, Tomcat 9(9.0.44), Maven
 
 В параметре аннотации @ComponentScan указываем, где Spring должен искать компоненты приложения.
 
- Для отображения view я испозовал jsp-страницы, поэтому для удобства, опишем бин ViewResolver, назначим суффикс и преффикс для удобного обращения ко view
+   Для отображения view я испозовал jsp-страницы, поэтому для удобства, опишем бин ViewResolver, назначим суффикс и преффикс для удобного обращения ко view
  ```java
-  @Bean
+    @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
 
@@ -40,8 +40,8 @@ Spring(MVC, Security), MySQL, Tomcat 9(9.0.44), Maven
     }
 ```
 Далее опишем бин DataSource, где мы подключаемся к БД. Рассмотрим подключение MySQL:
-```java
-@Bean
+ ```java
+    @   Bean
     public DataSource dataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
@@ -61,7 +61,45 @@ Spring(MVC, Security), MySQL, Tomcat 9(9.0.44), Maven
 TimeZone прописывать обязательно!
 
 4. Подготовить таблицы в БД
+Создадим две таблицы users и authorities и заполним их данными:
+```sql
+USE your_db;
 
+CREATE TABLE users (
+  username varchar(15),
+  password varchar(100),
+  enabled tinyint(1),
+  PRIMARY KEY (username)
+) ;
+
+CREATE TABLE authorities (
+  username varchar(15),
+  authority varchar(25),
+  FOREIGN KEY (username) references users(username)
+) ;
+
+INSERT INTO my_db.users (username, password, enabled)
+VALUES
+	('Nikita', '{noop}nikita', 1),
+	('Svetlana', '{noop}svetlana', 1),
+	('Ivan', '{noop}ivan', 1);
+    
+INSERT INTO my_db.authorities (username, authority)
+VALUES
+	('Nikita', 'ROLE_EMPLOYEE'),
+	('Elena', 'ROLE_HR'),
+    ('Ivan', 'ROLE_HR'),
+	('Ivan', 'ROLE_MANAGER');
+```
+Для хранения пароля в зашифрованном виде, я использовал bcrypt шифрование.
+Пример:
+Зашифруем пароль для user'a Ivan. Для этого я использовал Bcrypt Password Generator https://www.browserling.com/tools/bcrypt
+
+![](screenshots/bcryptgen.png)
+
+Полученный пароль нужно внести в таблицу и обязательно указать `{bcrypt}`
+
+![](screenshots/bcrypt.png)
 
 5. Настроить Appache Tomcat.
 
@@ -76,3 +114,8 @@ TimeZone прописывать обязательно!
 
 Нажимаем Apply, OK. Сервер готов.
 
+
+*Теперь мы можем запустить наше приложение на локальном сервере. 
+После успешного запуска вы увидите следующую страницу в браузере и сообщение в консоли*
+
+![](screenshots/final.png)
