@@ -69,19 +69,19 @@ VALUES
 
 В поле `jdbc.url` подставляем название вашей БД и порт, в `user.name` - ваш username, в `user.pas` - ваш пароль.
 
-![](screenshots/config.png)
+![config](screenshots/config.png)
 
-5. Настроить Appache Tomcat
+1. Настроить Appache Tomcat
 
 Я использовал Tomcat 9.0.44
 
 В Intellij Idea нажимаем на Edit Configuration рядом с кнопкой запуска, выбираем Tomcat Server -> Local, в появившемся окне нажимаем Configure и находим архив tomcat (скачиваем при необходимости)
 
-![](screenshots/tomcat2.png)
+![](screenshots/tom1.png)
 
-Переходим в Deployment, добавляем артефакт war_exploded
+Переходим в Deployment, добавляем артефакт 
 
-![](screenshots/tomcat3.png)
+![](screenshots/tom2.png)
 
 Нажимаем Apply, OK. Сервер готов.
 
