@@ -71,7 +71,7 @@ VALUES
 
 ![config](screenshots/config.png)
 
-1. Настроить Appache Tomcat
+5. Настроить Appache Tomcat
 
 Я использовал Tomcat 9.0.44
 
