@@ -20,47 +20,9 @@ Spring(MVC, Security), MySQL, Tomcat 9(9.0.44), Maven
     `$ cd YOUR_DIRECTORY`, далее прописываем команду `$ git clone URL`. Репозиторий клонирован.
 
 2. Открыть Intellij Idea: File -> Open -> ... -> spring_security
-3. Создать конфигурационный класс в пакете configuration
-   
-   Создаем класс MyConfig.java в пакете configuration
-   ![ScreenShot](screenshots/config.png)
 
-В параметре аннотации @ComponentScan указываем, где Spring должен искать компоненты приложения.
 
-   Для отображения view я испозовал jsp-страницы, поэтому для удобства, опишем бин ViewResolver, назначим суффикс и преффикс для удобного обращения ко view
- ```java
-    @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-
-        internalResourceViewResolver.setPrefix("/WEB-INF/view/");
-        internalResourceViewResolver.setSuffix(".jsp");
-
-        return internalResourceViewResolver;
-    }
-```
-Далее опишем бин DataSource, где мы подключаемся к БД. Рассмотрим подключение MySQL:
- ```java
-    @   Bean
-    public DataSource dataSource() {
-        ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        try {
-
-            dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
-            dataSource.setJdbcUrl("jdbc:mysql://localhost:"port"/"db_name"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Moscow");
-            dataSource.setUser("username");
-            dataSource.setPassword("password");
-
-        } catch (PropertyVetoException e) {
-            e.printStackTrace();
-        }
-
-        return dataSource;
-    }
-```    
-TimeZone прописывать обязательно!
-
-4. Подготовить таблицы в БД
+3. Подготовить таблицы в БД
 Создадим две таблицы users и authorities и заполним их данными:
 ```sql
 USE your_db;
@@ -100,17 +62,26 @@ VALUES
 Полученный пароль нужно внести в таблицу и обязательно указать `{bcrypt}`
 
 ![](screenshots/bcrypt.png)
+ 
+4. Заполнить файл `config.properties` актуальными данными. 
+   
+В `sql.driver` я оставил драйвер, кототрый использовал в конкретном проекте
 
-5. Настроить Appache Tomcat.
+В поле `jdbc.url` подставляем название вашей БД и порт, в `user.name` - ваш username, в `user.pas` - ваш пароль.
+
+![](screenshots/config.png)
+
+5. Настроить Appache Tomcat
 
 Я использовал Tomcat 9.0.44
 
 В Intellij Idea нажимаем на Edit Configuration рядом с кнопкой запуска, выбираем Tomcat Server -> Local, в появившемся окне нажимаем Configure и находим архив tomcat (скачиваем при необходимости)
-![ScreenShot](screenshots/tomcat2.png)
+
+![](screenshots/tomcat2.png)
 
 Переходим в Deployment, добавляем артефакт war_exploded
 
-![ScreenShot](screenshots/tomcat3.png)
+![](screenshots/tomcat3.png)
 
 Нажимаем Apply, OK. Сервер готов.
 
