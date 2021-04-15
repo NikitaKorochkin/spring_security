@@ -50,7 +50,7 @@ INSERT INTO my_db.authorities (username, authority)
 VALUES
 	('Nikita', 'ROLE_EMPLOYEE'),
 	('Elena', 'ROLE_HR'),
-    ('Ivan', 'ROLE_HR'),
+      ('Ivan', 'ROLE_HR'),
 	('Ivan', 'ROLE_MANAGER');
 ```
 Для хранения пароля в зашифрованном виде, я использовал bcrypt шифрование.
