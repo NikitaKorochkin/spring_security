@@ -63,13 +63,11 @@ VALUES
 
 ![](screenshots/bcrypt.png)
  
-4. Заполнить файл `config.properties` актуальными данными. 
-   
-В `sql.driver` я оставил драйвер, кототрый использовал в конкретном проекте
+4. Внести данные вашей БД в MyConfig
+  
+Необходимо указать порт, используемый вами, имя БД, а также username и password.
 
-В поле `jdbc.url` подставляем название вашей БД и порт, в `user.name` - ваш username, в `user.pas` - ваш пароль.
-
-![config](screenshots/config.png)
+![config](screenshots/cfg.png)
 
 5. Настроить Appache Tomcat
 

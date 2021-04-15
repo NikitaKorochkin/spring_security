@@ -14,7 +14,6 @@ import java.beans.PropertyVetoException;
 
 @Configuration
 @ComponentScan("ru.korochkin.spring.security")
-
 @EnableWebMvc
 public class MyConfig {
 
@@ -36,7 +35,8 @@ public class MyConfig {
         try {
 
             dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
-            dataSource.setJdbcUrl("jdbc:mysql://localhost:'port'/'your_db'?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Moscow");
+            dataSource.setJdbcUrl("jdbc:mysql://localhost:'port'/'your_db'" +
+                    "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Moscow");
             dataSource.setUser("");
             dataSource.setPassword("");
 
