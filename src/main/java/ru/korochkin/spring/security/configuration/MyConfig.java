@@ -11,8 +11,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
+
 @Configuration
 @ComponentScan("ru.korochkin.spring.security")
+
 @EnableWebMvc
 public class MyConfig {
 
@@ -33,10 +35,10 @@ public class MyConfig {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
 
-            dataSource.setDriverClass("${sql.driver}");
-            dataSource.setJdbcUrl("${jdbc.url}" + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Moscow");
-            dataSource.setUser("${user.name}");
-            dataSource.setPassword("${user.pas}");
+            dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
+            dataSource.setJdbcUrl("jdbc:mysql://localhost:'port'/'your_db'?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Moscow");
+            dataSource.setUser("");
+            dataSource.setPassword("");
 
         } catch (PropertyVetoException e) {
             e.printStackTrace();
